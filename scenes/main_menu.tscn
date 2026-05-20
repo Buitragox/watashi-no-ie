@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://hcmb54laxpfn"]
+
+[ext_resource type="Script" uid="uid://37ssl8xlr878" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://cw3ce45jtd8nu" path="res://assets/sprites/UI books & more.png" id="2_bqqt6"]
+[ext_resource type="FontFile" uid="uid://bgp2vdjq2a6oh" path="res://assets/fonts/DotGothic16-Regular.ttf" id="2_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://b4lrdl4kpw8k2" path="res://scenes/fade_transition.tscn" id="2_wu84c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqqt6"]
+atlas = ExtResource("2_bqqt6")
+region = Rect2(513, 17, 47, 62)
+
+[node name="MainMenu" type="Control" unique_id=1930183362]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2101477902]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1986445719]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=816954986]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/MarginContainer" unique_id=1498518191]
+custom_minimum_size = Vector2(220, 300)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_bqqt6")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer/TextureRect" unique_id=1562480695]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 78
+theme_override_constants/margin_right = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/TextureRect/MarginContainer" unique_id=2131218680]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=1325304689]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 48
+text = "私の家"
+horizontal_alignment = 1
+vertical_alignment = 1
+language = "ja"
+
+[node name="Start" type="Button" parent="CenterContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=1198769547]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.9733798, 0.31864718, 0.39927855, 1)
+theme_override_colors/font_hover_color = Color(0.80388725, 0.11708706, 0.25986883, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 32
+text = "スタート"
+flat = true
+
+[node name="Quit" type="Button" parent="CenterContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=114965177]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.9733798, 0.31864718, 0.39927855, 1)
+theme_override_colors/font_hover_color = Color(0.80388725, 0.11708706, 0.25986883, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 32
+text = "やめる"
+flat = true
+
+[node name="FadeTransition" parent="." unique_id=1198893389 instance=ExtResource("2_wu84c")]
+visible = false
+layout_mode = 0
+offset_left = -120.0
+offset_top = -46.0
+offset_right = 2024.0
+offset_bottom = 1163.0
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
